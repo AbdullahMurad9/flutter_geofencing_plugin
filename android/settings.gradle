@@ -1,0 +1,18 @@
+
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google() // Make sure Google's Maven repository is included if you're using AndroidX artifacts
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        mavenCentral()
+        // Consider removing this if it's no longer needed
+    }
+}
+
+rootProject.name = 'flutter_geofencing'

@@ -1,0 +1,99 @@
+group 'com.example.flutter_geofencing'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.9.0'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//        classpath "net.bytebuddy:byte-buddy:1.12.22"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+
+
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    if (project.android.hasProperty("namespace")) {
+        namespace 'com.example.flutter_geofencing'
+    }
+
+    compileSdk 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    defaultConfig {
+        minSdkVersion 21
+    }
+
+    dependencies {
+        testImplementation 'org.jetbrains.kotlin:kotlin-test'
+        testImplementation 'org.mockito:mockito-core:5.0.0'
+
+        // liabraries
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//        implementation 'com.google.android.gms:play-services-location:21.3.0'
+//        implementation 'com.google.android.gms:play-services-maps:19.0.0'
+//        implementation 'androidx.appcompat:appcompat:1.7.0'
+//        implementation 'com.google.android.material:material:1.12.0'
+//        implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+//        implementation("com.google.firebase:firebase-analytics-ktx")
+
+        implementation 'com.google.android.gms:play-services-location:19.0.1'
+        implementation 'com.google.android.gms:play-services-maps:17.0.0'
+        implementation 'androidx.appcompat:appcompat:1.3.1'
+        implementation 'com.google.android.material:material:1.4.0'
+        implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+        implementation("com.google.firebase:firebase-analytics-ktx")
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+
+            testLogging {
+               events "passed", "skipped", "failed", "standardOut", "standardError"
+               outputs.upToDateWhen {false}
+               showStandardStreams = true
+            }
+        }
+    }
+}
+
+
+//dependencies {
+//    implementation project(path: ':app')
+//}
+
+//dependencies {
+//    implementation project(path: ':app')
+//}
+
+
